@@ -24,7 +24,7 @@ export default {
   name: 'Home',
   data() {
     return {
-      msg: 'Hi! Welcome to IE Bank',
+      msg: 'Hi! Welcome to IE Bank, your trusted bank',
       environment: '',
       env_var_file_name: '',
     };
