@@ -12,7 +12,7 @@ on:
 
 env:
   FRONTEND_WEBAPP_DEV: mmrabtei-fe
-  ENV : ${{ github.ref == 'refs/heads/main' && 'uat' || 'dev2' }}
+  ENV : ${{ github.ref == 'refs/heads/main' && 'uat' || 'dev' }}
 
 jobs:
   build:
