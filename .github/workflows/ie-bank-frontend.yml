@@ -7,10 +7,12 @@ on:
   push:
     branches:
       - main
+      - '*'
   workflow_dispatch:
 
 env:
-  FRONTEND_WEBAPP_DEV: mmrabtei-fe-dev
+  FRONTEND_WEBAPP_DEV: mmrabtei-fe
+  ENV : ${{ github.ref == 'refs/head/main' && 'uat' || 'dev'}}
 
 jobs:
   build:
@@ -27,8 +29,13 @@ jobs:
 
       - name: npm install, build, and test
         run: |
-          npm install
-          npm run build -- --mode development --dest dist-dev ## this command will build the vue.js app using .env.development variables into the dest-div/ folder
+          if [[ $ENV == "uat" ]]; then
+            npm install
+            npm run build -- --mode production --dest dist-dev
+          else
+            npm install
+            npm run build -- --mode development --dest dist-dev
+          fi
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
@@ -57,5 +64,5 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: ${{ env.FRONTEND_WEBAPP_DEV }}
+          app-name: ${{ env.FRONTEND_WEBAPP_DEV }}-${{ env.ENV }}
           package: .
