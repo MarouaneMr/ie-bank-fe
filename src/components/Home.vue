@@ -5,10 +5,10 @@
       <p class="home-description">Your Trusted Banking Partner</p>
       <div class="cta-button">
         <router-link to="/Skull">
-          <button class="cta-button-primary">Explore Skull</button>
+          <button class="cta-button-primary">Admin</button>
         </router-link>
         <router-link to="/Accounts">
-          <button class="cta-button-secondary">View Accounts</button>
+          <button class="cta-button-secondary">User</button>
         </router-link>
       </div>
     </div>
